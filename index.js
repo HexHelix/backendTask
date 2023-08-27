@@ -19,6 +19,16 @@ db.serialize(() => {
     });
   };
 
+  const getHistory = (callback) => {
+    db.all(`SELECT * FROM operations ORDER BY id DESC LIMIT 20`, (err, rows) => {
+      if (err) {
+        console.error('Error getting history:', err.message);
+        return callback([]);
+      }
+      callback(rows);
+    });
+  };
+
 app.get("/", (req, res) => {
   res.send(
     "Welcome to the math server! Send mathematical operations in the URL."
@@ -26,7 +36,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/history", (req, res) => {
-  res.send("History");
+    getHistory((history) => {
+        res.json(history);
+      });
 });
 
 
@@ -66,6 +78,10 @@ app.get(/^(\/[0-9]+\/(plus|minus|dividedby|into)\/[0-9]+)(\/(plus|minus|dividedb
     res.json({ question, answer });
     
 });
+
+app.get('*', (req, res) => {
+    res.send('Invalid Endpoint!');
+  });
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
