@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API INFORMATION</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>ENDPOINT</th>
+            <th>GET Request</th>
+            <th>Response</th>
+        </tr>
+        <tr>
+            <td>/</td>
+            <td>GET /</td>
+            <td>Home page</td>
+        </tr>
+        <tr>
+            <td>/history</td>
+            <td>GET /history</td>
+            <td>HTML
+                Lists the last 20 operations performed on the server, and the answers.
+                </td>
+        </tr>
+        <tr>
+            <td>/1/plus/2</td>
+            <td>GET /1/plus/2/{add more expressions}</td>
+            <td>JSON
+                {question:"question",answer: "answer"}
+                </td>
+        </tr>
+
+    </table>
+</body>
+</html>

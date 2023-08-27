@@ -1,6 +1,7 @@
 const express = require("express");
 const sqlite3 = require('sqlite3').verbose();
 const math = require('mathjs');
+const path = require('path');
 
 const app = express();
 const port = 3000;
@@ -30,9 +31,7 @@ db.serialize(() => {
   };
 
 app.get("/", (req, res) => {
-  res.send(
-    "Welcome to the math server! Send mathematical operations in the URL."
-  );
+    res.sendFile(path.join(__dirname, '/index.html'));
 });
 
 app.get("/history", (req, res) => {
